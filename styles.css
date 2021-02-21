@@ -541,7 +541,7 @@ header {
     align-content: center;
     justify-content: center;
     z-index: 99;
-    font-size: 20px;
+    font-size: 14px;
     letter-spacing: 2px;
     width: inherit;
     animation: feedback 0.7s ease-in-out infinite normal;
