@@ -578,7 +578,7 @@ header {
     height: 2.5em;
     background-color: var(--clr-accent);
     border-radius: 2em;
-    transition: transform 500ms cubic-bezier(0.5, 0, 0.5, 1), opacity 200ms linear;
+    transition: transform 100ms cubic-bezier(0.5, 0, 0.5, 1), opacity 50ms linear;
 }
 
 .submit-value-btn+.get-notes-btn {
