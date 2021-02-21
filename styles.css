@@ -509,6 +509,7 @@ header {
     padding-top: 1.5em;
     margin-bottom: 10em;
     height: 400px;
+    border: 4px double var(--clr-accent);
 }
 
 #container {
