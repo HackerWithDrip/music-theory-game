@@ -1,0 +1,29 @@
+{
+    "name": "lionel-raseemela-199-semitone-difference-basic-algorithm-javascript",
+    "version": "1.0.0",
+    "description": "Semitone basic algorithm",
+    "main": "jam.js",
+    "scripts": {
+        "test": "jasmine"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Umuzi-org/LIONEL-RASEEMELA-199-semitone-difference-basic-algorithm-javascript.git"
+    },
+    "keywords": [
+        "semitone"
+    ],
+    "author": "Lionel Raseemela",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Umuzi-org/LIONEL-RASEEMELA-199-semitone-difference-basic-algorithm-javascript/issues"
+    },
+    "homepage": "https://github.com/Umuzi-org/LIONEL-RASEEMELA-199-semitone-difference-basic-algorithm-javascript#readme",
+    "dependencies": {
+        "jasmine": "^3.6.4",
+        "jsdom": "^16.4.0"
+    },
+    "devDependencies": {
+        "jasmine-dom-custom-matchers": "^1.0.6"
+    }
+}
