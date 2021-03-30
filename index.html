@@ -12,30 +12,7 @@
 </head>
 
 <body>
-    <header>
-        <button class="nav-toggle" aria-label="toggle navigation">
-        <span class="menu"></span>
-      </button>
-        <nav class="nav">
-            <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-                <li class="nav__item">
-                    <a href="#about" class="nav__link">About me</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#skills" class="nav__link">Skills</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#projects" class="nav__link">Projects</a>
-                </li>
-                <li class="nav__item">
-                    <a href="mailto:lraseemela@gmail.com" class="nav__link">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="introduction" id="home">
+    <section class="introduction">
         <h1 class="section__title section__title--intro">
             <a href="#home"></a>
             Semitone
@@ -47,6 +24,7 @@
         <img src="./Images/imgbin_grand-piano-drawing-upright-piano-png.png" alt="" class="introduction__img" />
     </section>
 
+
     <div id="container">
         <div id="game_play">
             <div id="result">
@@ -54,58 +32,50 @@
                     <p id="notes-displayed"></p>
                 </div>
             </div>
-            <div class="feedback-section">
-                <p class="feedback"></p>
+            <div id="feedback-section">
+                <p id="feedback"></p>
             </div>
             <div id="keyboard">
                 <div id="get-notes">
-                    <button class="get-notes-btn">Get random notes</button>
-                    <button class="submit-value-btn">Submit answer</button>
+                    <button id="get-notes-btn">Get random notes</button>
+                    <button id="submit-value-btn">Submit answer</button>
+
                 </div>
                 <div id="input-field">
-                    <input class="input-answer" type="number" min="0" max="11" placeholder="Enter any number" required />
+                    <input id="input-answer" type="number" min="0" max="11" placeholder="Enter any number" required />
+
                 </div>
+
+                <div id="get-notes">
+                    <button id="reveal-answer-btn">Reveal answer</button>
+                </div>
+                <div id="explanation">
+                    <div id="explanation_0" class="note_box"></div>
+                    <div id="explanation_1" class="note_box"></div>
+                    <div id="explanation_2" class="note_box"></div>
+                    <div id="explanation_3" class="note_box"></div>
+                    <div id="explanation_4" class="note_box"></div>
+                    <div id="explanation_5" class="note_box"></div>
+                    <div id="explanation_6" class="note_box"></div>
+                    <div id="explanation_7" class="note_box"></div>
+                    <div id="explanation_8" class="note_box"></div>
+                    <div id="explanation_9" class="note_box"></div>
+                    <div id="explanation_10" class="note_box"></div>
+                    <div id="explanation_11" class="note_box"></div>
+                </div>
+
+            </div>
+            <div id="score">
+                0
             </div>
         </div>
+
     </div>
-    <!-- Footer -->
 
-    <footer class="footer">
-        <a href="footer"></a>
-        <a href="mailto:lraseemela@gmail.com" class="footer__link">
-        lraseemela@gmail.com
-      </a>
-        <ul class="social-list">
-            <li class="social-list__item">
-                <a class="social-list__link" href="https://github.com/HackerWithDrip" target="blank_">
-                    <i class="fab fa-github"></i>
-                </a>
-            </li>
-            <li class="social-list__item">
-                <a class="social-list__link" href="https://twitter.com/lioneldynasty" target="blank_">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li class="social-list__item">
-                <a class="social-list__link" href="https://www.linkedin.com/in/lionel-raseemela-46090ab9/" target="blank_">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </li>
-        </ul>
-        <div class="copy-right">
-            &copy; Created by
-            <a href="https://www.linkedin.com/in/lionel-raseemela-46090ab9/" target="_blank">
-          Lionel Raseemela
-          <i></i>
-        </a>
-        </div>
-
-        <div class="last-update">
-            <p>Last modified: 2021</p>
-        </div>
-    </footer>
-
+    </div>
+    <script type="text/javascript" src="./src/jamBuddy.js"></script>
     <script type="text/javascript" src="./src/script.js"></script>
+    <script type="text/javascript" src="./spec/jamBuddy_spec.js"></script>
 </body>
 
 </html>

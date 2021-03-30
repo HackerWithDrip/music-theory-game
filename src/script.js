@@ -1,88 +1,89 @@
-class JamBuddy {
-    constructor() {
-        this.noteList = ['A', ['A#', 'Bb'], 'B', 'C', ['C#', 'Db'], 'D', ['D#', 'Eb'], 'E', 'F', ['F#', 'Gb'], 'G', ['G#', 'Ab']];
-    }
-
-    selectNotes() {
-        this.ans = [];
-        this.randomNotes = [
-            this.noteList[Math.floor(Math.random() * this.noteList.length)],
-            this.noteList[Math.floor(Math.random() * this.noteList.length)],
-        ];
-
-        for (let i in this.randomNotes) {
-            if (Array.isArray(this.randomNotes[i])) {
-                this.ans.push(this.randomNotes[i][Math.floor(Math.random() * this.randomNotes[i].length)]);
-            } else {
-                this.ans.push(this.randomNotes[i]);
-            }
-        }
-        return this.ans;
-    }
-
-    checkAnswer(diff) {
-        let firstNotePosition, secondNotePosition, result;
-        if (this.noteList.indexOf(this.ans[0]) == -1 || this.noteList.indexOf(this.ans[1]) == -1) {
-            for (let j in this.noteList) {
-                if (this.noteList[j].length == 2 && this.noteList[j][0] == this.ans[0]) {
-                    firstNotePosition = this.noteList.indexOf(this.noteList[j]);
-                } else if (this.noteList[j].length == 2 && this.noteList[j][1] == this.ans[0]) {
-                    firstNotePosition = this.noteList.indexOf(this.noteList[j]);
-                } else if (this.noteList[j].length == 2 && this.noteList[j][0] == this.ans[1]) {
-                    secondNotePosition = this.noteList.indexOf(this.noteList[j]);
-                } else if (this.noteList[j].length == 2 && this.noteList[j][1] == this.ans[1]) {
-                    secondNotePosition = this.noteList.indexOf(this.noteList[j]);
-                } else if (this.noteList[j] == this.ans[0]) {
-                    firstNotePosition = this.noteList.indexOf(this.noteList[j]);
-                } else if (this.noteList[j] == this.ans[1]) {
-                    secondNotePosition = this.noteList.indexOf(this.noteList[j]);
-                }
-            }
-        } else {
-            firstNotePosition = this.noteList.indexOf(this.ans[0]);
-            secondNotePosition = this.noteList.indexOf(this.ans[1]);
-        }
-
-        if (firstNotePosition > secondNotePosition) {
-            result = this.noteList.length + secondNotePosition - firstNotePosition;
-        } else if (secondNotePosition > firstNotePosition) {
-            result = secondNotePosition - firstNotePosition;
-        } else {
-            result = 0;
-        }
-        return Number(diff) == result;
-    }
-}
-
 let buddy = new JamBuddy();
+let notes = buddy.noteList;
+let feedbackMsg = document.getElementById('feedback');
+let getNotes = document.getElementById('get-notes-btn');
+let submitValue = document.getElementById('submit-value-btn');
+let notesDisplayed = document.getElementById('notes');
+let revealAnswerBtn = document.getElementById('reveal-answer-btn');
+let explain = document.getElementById('explanation');
+let streak = document.getElementById('score');
+let cnt = 0;
+let explanationArray = explain.children;
 
 let generateNotes = () => {
-    return (
-        (document.getElementById('notes').innerText = buddy.selectNotes()),
-        (document.querySelector('.feedback').innerText = ''),
-        (document.querySelector('.input-answer').value = null)
-    );
+    notesDisplayed.innerHTML = buddy.selectNotes()
+    feedbackMsg.innerHTML = ''
+    document.getElementById('input-answer').value = null
+    streak.innerHTML = `Streak: ${cnt}`
+    for (let i in explanationArray) {
+        explanationArray[i].innerHTML = '';
+        explanationArray[i].style.backgroundColor = "white";
+    }
 };
 
 let submission = () => {
-    let inputAnswer = document.querySelector('.input-answer').value;
+    let inputAnswer = document.getElementById('input-answer').value;
     let isCorrect = buddy.checkAnswer(inputAnswer);
 
     if (inputAnswer == '' || inputAnswer > 11 || inputAnswer < 0) {
-        return (document.querySelector('.feedback').style.color = `white`,
-            document.querySelector('.feedback').innerText = `Please enter any number from 0 to 11`)
-
+        feedbackMsg.style.color = `white`
+        feedbackMsg.innerHTML = `>> Please enter any number from 0 to 11 <<`
+        cnt = 0;
+        streak.innerHTML = `Streak: ${cnt}`;
     } else if (isCorrect == true) {
-        return (document.querySelector('.feedback').style.color = 'green',
-            document.querySelector('.feedback').innerText = `You got it right .Well Done!`)
+        streak.innerHTML = `Streak: ${cnt = cnt + 1}`
+        feedbackMsg.style.color = 'green'
+        feedbackMsg.innerHTML = `>> You got it right. Well Done! <<`
+        setTimeout(() => {
+            generateNotes();
+        }, 3000);
     } else if (isCorrect == false) {
-        return (document.querySelector('.feedback').style.color = 'red',
-            document.querySelector('.feedback').innerText = `Wrong answer! Try again`)
+        feedbackMsg.style.color = 'red'
+        feedbackMsg.innerHTML = `>> Wrong answer! Try again <<`
+        cnt = 0;
+        streak.innerHTML = `Streak: ${cnt}`;
     }
 };
 
-let getNotes = document.querySelector('.get-notes-btn');
-let submitValue = document.querySelector('.submit-value-btn');
+let revealAnswer = () => {
+    let correct = [buddy.checkAnswer(0), buddy.checkAnswer(1), buddy.checkAnswer(2), buddy.checkAnswer(3), buddy.checkAnswer(4), buddy.checkAnswer(5), buddy.checkAnswer(6), buddy.checkAnswer(7), buddy.checkAnswer(8), buddy.checkAnswer(9), buddy.checkAnswer(10), buddy.checkAnswer(11)];
+    feedbackMsg.style.color = 'orange'
 
-getNotes.addEventListener('click', generateNotes)
-submitValue.addEventListener('click', submission);
+    for (let i in correct) {
+        if (correct[i] == true) {
+            feedbackMsg.innerHTML = `>>> The correct answer is ${i} <<<`
+        }
+    }
+
+    for (let i in explanationArray) {
+        explanationArray[i].innerHTML = notes[i]
+    }
+
+    if (notes.indexOf(buddy.ans[0]) == -1 || notes.indexOf(buddy.ans[1]) == -1) {
+        for (let j in notes) {
+            if (notes[j].length == 2 && notes[j][0] == buddy.ans[0]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            } else if (notes[j].length == 2 && notes[j][1] == buddy.ans[0]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            } else if (notes[j].length == 2 && notes[j][0] == buddy.ans[1]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            } else if (notes[j].length == 2 && notes[j][1] == buddy.ans[1]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            } else if (notes[j] == buddy.ans[0]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            } else if (notes[j] == buddy.ans[1]) {
+                explanationArray[j].style.backgroundColor = "orange";
+            }
+        }
+    } else {
+        explanationArray[notes.indexOf(buddy.ans[0])].style.backgroundColor = "orange";
+        explanationArray[notes.indexOf(buddy.ans[1])].style.backgroundColor = "orange";
+    }
+    return (explanationArray)
+
+};
+
+window.onload = generateNotes;
+getNotes.onclick = generateNotes;
+submitValue.onclick = submission;
+revealAnswerBtn.onclick = revealAnswer;
